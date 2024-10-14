@@ -18,6 +18,7 @@ def sample_data():
     df['Дата платежа'] = pd.to_datetime(df['Дата платежа'])
     return df
 
+
 @pytest.fixture
 def test_transactions():
     data = {
@@ -39,12 +40,14 @@ def test_transactions():
     }
     return pd.DataFrame(data)
 
+
 @pytest.fixture
 def mock_user_settings():
     return {
         "user_currencies": ["USD", "EUR"],
         "user_stocks": ["AAPL", "MSFT"]
     }
+
 
 @pytest.fixture
 def mock_transactions():
@@ -57,3 +60,13 @@ def mock_transactions():
         "Описание": ["Оплата", "Оплата"]
     }
     return pd.DataFrame(data)
+
+@pytest.fixture
+def mock_transactions_data():
+    return {
+           "Сумма операции": [100, 200],
+           "Кэшбэк": [5, 10],
+           "Номер карты": ["1234 5678 9012 3456", "1234 5678 9012 3456"],
+           "Дата операции": ["2021-01-01", "2021-01-02"],
+           "Описание": ["Покупка", "Покупка"]
+       }

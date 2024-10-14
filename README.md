@@ -18,6 +18,20 @@ git clone https://github.com/Setlik/coursework.git
 ```
 pip install -r requirements.txt
 ```
+3. Создать директории:
+```
+logs
+```
+и
+```
+data
+```
+4. Скачать и поместить в директорию data файл:
+[operations.xlsx](operations)
+5. В корень проекта необходимо скачать файл [user_settings.json](settings) который содержит:
+```
+Настройки  валютных пар а так же цены на акции выводимые на главном экране 
+```
 
 ## Используемые технологии
 

@@ -4,21 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5c410ed5-5c57-4e3d-bd6a-616caa3214a7" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reports.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_reports.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_services.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_views.py" afterDir="false" />
+    <list default="true" id="5c410ed5-5c57-4e3d-bd6a-616caa3214a7" name="Changes" comment="курсач">
+      <change afterPath="$PROJECT_DIR$/src/decorators.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_decorators.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user_settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/reports.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user_settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_reports.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_services.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,12 +49,13 @@
     &quot;assignee&quot;: &quot;Setlik&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:Setlik/coursework.git&quot;,
-    &quot;accountId&quot;: &quot;8e3258b3-fd9b-4759-8f97-98a55690a360&quot;
-  }
-}</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:Setlik/coursework.git",
+    "accountId": "8e3258b3-fd9b-4759-8f97-98a55690a360"
+  },
+  "reviewCommentPreferred": false
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -68,8 +72,18 @@
     "Python tests.Python tests for test_reports.test_spending_by_category.executor": "Run",
     "Python tests.Python tests for test_reports.test_spending_by_category_no_results.executor": "Run",
     "Python tests.Python tests for test_services.test_safe_lower.executor": "Run",
+    "Python tests.Python tests for test_services.test_search_personal_transfers.executor": "Run",
     "Python tests.Python tests for test_services.test_search_phone_numbers.executor": "Run",
     "Python tests.Python tests for test_services.test_search_transactions.executor": "Run",
+    "Python tests.Python tests for test_utils.test_get_currency_data.executor": "Run",
+    "Python tests.Python tests for test_utils.test_get_currency_data_invalid_format.executor": "Run",
+    "Python tests.Python tests for test_utils.test_get_stock_data.executor": "Run",
+    "Python tests.Python tests for test_utils.test_greet_good_morning.executor": "Run",
+    "Python tests.Python tests for test_utils.test_greet_good_night.executor": "Run",
+    "Python tests.Python tests for test_utils.test_greeting.executor": "Run",
+    "Python tests.Python tests for test_utils.test_greeting_monkeypatch.executor": "Run",
+    "Python tests.Python tests for test_utils.test_load_transactions_from_excel.executor": "Run",
+    "Python tests.Python tests for test_utils.test_load_user_settings.executor": "Run",
     "Python tests.Python tests for test_views.test_generate_json_response.executor": "Run",
     "Python tests.Python tests for test_views.test_get_currency_data.executor": "Run",
     "Python tests.Python tests for test_views.test_get_currency_data_invalid_format.executor": "Run",
@@ -80,10 +94,62 @@
     "Python.services.executor": "Run",
     "Python.views.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature"
+    "git-widget-placeholder": "#1 on feature",
+    "last_opened_file_path": "C:/lessons/coursework/coursework/tests"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\lessons\coursework\coursework\tests" />
+      <recent name="C:\lessons\coursework\coursework\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.Python tests for test_reports.test_spending_by_category_no_results">
+    <configuration name="Python tests for test_reports.test_spending_by_category" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="coursework" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_reports.test_spending_by_category&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_reports.test_spending_by_category_no_results" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="coursework" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_reports.test_spending_by_category_no_results&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_services.test_safe_lower" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="coursework" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_services.test_safe_lower&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Python tests for test_services.test_search_phone_numbers" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="coursework" />
       <option name="ENV_FILES" value="" />
@@ -99,7 +165,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_views.test_generate_json_response" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for test_services.test_search_transactions" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="coursework" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -110,62 +176,17 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_views.test_generate_json_response&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for test_views.test_get_currency_data" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="coursework" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_views.test_get_currency_data&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for test_views.test_get_currency_data_invalid_format" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="coursework" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_views.test_get_currency_data_invalid_format&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for test_views.test_get_stock_data" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="coursework" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_views.test_get_stock_data&quot;" />
+      <option name="_new_target" value="&quot;test_services.test_search_transactions&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for test_reports.test_spending_by_category_no_results" />
+        <item itemvalue="Python tests.Python tests for test_reports.test_spending_by_category" />
+        <item itemvalue="Python tests.Python tests for test_services.test_safe_lower" />
+        <item itemvalue="Python tests.Python tests for test_services.test_search_transactions" />
         <item itemvalue="Python tests.Python tests for test_services.test_search_phone_numbers" />
-        <item itemvalue="Python tests.Python tests for test_views.test_generate_json_response" />
-        <item itemvalue="Python tests.Python tests for test_views.test_get_stock_data" />
-        <item itemvalue="Python tests.Python tests for test_views.test_get_currency_data_invalid_format" />
-        <item itemvalue="Python tests.Python tests for test_views.test_get_currency_data" />
       </list>
     </recent_temporary>
   </component>
@@ -201,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728675476962</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="курсач">
+      <option name="closed" value="true" />
+      <created>1728848233898</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728848233898</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -209,6 +238,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="курсач" />
+    <option name="LAST_COMMIT_MESSAGE" value="курсач" />
   </component>
 </project>
