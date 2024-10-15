@@ -27,9 +27,8 @@ def search_transactions(query: str) -> str:
     """Поиск транзакций по строке."""
     logger.info(f"Поиск транзакций по запросу: {query}")
     result = list(
-    filter(lambda t: (query.lower() in safe_lower(t['Описание']) if t['Описание'] else False) or
-                  (query.lower() in safe_lower(t['Категория']) if t['Категория'] else False), transactions)
-)
+        filter(lambda t: (query.lower() in safe_lower(t['Описание']) if t['Описание'] else False) or (query.lower()
+               in safe_lower(t['Категория']) if t['Категория'] else False), transactions))
     return json.dumps(result, ensure_ascii=False)
 
 

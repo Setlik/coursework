@@ -1,4 +1,3 @@
-import json
 import logging
 import os
 from datetime import datetime
@@ -9,10 +8,11 @@ import pandas as pd
 from src.decorators import report_decorator
 
 PATH_HOME = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    filename=os.path.join(PATH_HOME, "logs", "reports.log"),
-                    filemode='w')
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - (levelname)s - %(message)s',
+    filename=os.path.join(PATH_HOME, "logs", "reports.log"),
+    filemode='w')
 logger = logging.getLogger()
 file_path = os.path.join(PATH_HOME, "data", "operations.xlsx")
 transactions = pd.read_excel(file_path)
@@ -29,7 +29,7 @@ def spending_by_category(transactions: pd.DataFrame, category: str, date: Option
     filtered_transactions = transactions[transactions['Категория'] == category]
     three_months_ago = target_date - pd.DateOffset(months=3)
     mask = (filtered_transactions['Дата платежа'] < target_date) & (
-            filtered_transactions['Дата платежа'] >= three_months_ago)
+        filtered_transactions['Дата платежа'] >= three_months_ago)
 
     result = filtered_transactions[mask]
 
