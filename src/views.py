@@ -1,69 +1,56 @@
 import json
-import requests
-from datetime import datetime
-import pytz
+import logging
+import os
+
+import pandas as pd
+from dotenv import load_dotenv
+from pandas import date_range
+
+from src.utils import load_transactions_from_excel, greeting, get_currency_data, get_stock_data, date_range_time
+
+PATH_HOME = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    filename=os.path.join(PATH_HOME, "logs", "views.log"),
+                    filemode='w')
+logger = logging.getLogger()
+
+load_dotenv()
+API_KEY_STOCK = os.getenv("API_KEY_STOCK")
+API_KEY_CURRENCY = os.getenv("API_KEY_CURRENCY")
 
 
-# Функция для приветствия в зависимости от времени суток
-def greeting(current_time):
-    if current_time.hour < 6:
-        return "Доброй ночи"
-    elif current_time.hour < 12:
-        return "Доброе утро"
-    elif current_time.hour < 18:
-        return "Добрый день"
-    else:
-        return "Добрый вечер"
-
-
-# Функция для получения данных из user_settings.json
-def load_user_settings():
-    with open('user_settings.json', 'r', encoding='utf-8') as f:
-        return json.load(f)
-
-
-# Функция для получения курсов валют
-def get_currency_data(currencies):
-    api_url = 'https://api.exchangerate-api.com/v4/latest/USD'  # Пример API для валют
-    response = requests.get(api_url)
-    data = response.json()
-
-    rates = {currency: data['rates'].get(currency) for currency in currencies}
-    return rates
-
-
-# Функция для получения цен акций
-def get_stock_data(stocks):
-    stock_prices = {}
-    for stock in stocks:
-        api_url = f'https://api.example.com/stock/{stock}'  # Пример API для акций
-        response = requests.get(api_url)
-        data = response.json()
-        stock_prices[stock] = data['latestPrice']
-    return stock_prices
-
-
-# Главная функция для генерации JSON-ответа
-def generate_json_response(date_str):
-    # Парсинг даты из строки
-    input_date = datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S')
-    current_time = datetime.now(pytz.timezone('Europe/Moscow'))  # Замените на свой часовой пояс
-
-    # Готовим ответ
+def generate_json_response(date_time_str):
+    """Генерация JSON-ответа на основе переданной даты."""
+    start_date, end_date = date_range_time(date_time_str)
+    transactions_df = load_transactions_from_excel('operation.xlsx')
+    transactions_df['Дата операции'] = pd.to_datetime(transactions_df['Дата операции'], format='%d.%m.%Y %H:%M:%S',
+                                                      errors='coerce')
+    filtered_transactions = transactions_df[
+        (transactions_df['Дата операции'] >= start_date) & (transactions_df['Дата операции'] <= end_date)]
+    total_expenses = filtered_transactions['Сумма операции'].sum()
+    cashback = filtered_transactions['Кэшбэк'].sum()
+    last_four_digits = filtered_transactions['Номер карты'].iloc[0][-4:] if not filtered_transactions.empty else "0000"
+    top_transactions = filtered_transactions.nlargest(5, 'Сумма операции')[
+        ['Дата операции', 'Сумма операции', 'Описание']]
+    top_transactions['Дата операции'] = top_transactions['Дата операции'].dt.strftime('%Y-%m-%d %H:%M:%S')
+    top_transactions = top_transactions.to_dict(orient='records')
     response = {
-        "greeting": greeting(current_time),
+        "greeting": greeting(),
         "transactions_summary": {
-            "last_four_digits": "1234",
-            "total_expenses": 1000,
-            "cashback": 10  # 1000 / 100 = 10
+            "last_four_digits": last_four_digits,
+            "total_expenses": total_expenses,
+            "cashback": cashback
         },
-        "top_transactions": [
-            {"amount": 500, "description": "Оплата заказа"},
-            {"amount": 300, "description": "Оплата услуги"},
-            # Добавьте 3 других транзакции
-        ],
-        "currency_rates": get_currency_data(load_user_settings()["user_currencies"]),
-        "stock_prices": get_stock_data(load_user_settings()["user_stocks"])
+        "top_transactions": top_transactions,
+        "currency_rates": get_currency_data([]),
+        "stock_prices": get_stock_data([])
     }
-
     return json.dumps(response, ensure_ascii=False, indent=4)
+
+# # Пример использования функции
+# if __name__ == "__main__":
+#     stocks = ["AAPL", "AMZN", "GOOGL", "MSFT", "TSLA"]
+#     prices = get_stock_data(stocks)
+#     print(prices)

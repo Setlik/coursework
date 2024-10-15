@@ -2,9 +2,9 @@ from src.views import generate_json_response
 
 
 def main():
-    date_input = input("Введите дату в формате YYYY-MM-DD HH:MM:SS: ")
-    result_json = generate_json_response(date_input)
+    result_json = generate_json_response("23.12.2021 14:00:00")
     print(result_json)
+
 
 if __name__ == "__main__":
     main()
