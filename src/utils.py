@@ -85,3 +85,10 @@ def get_stock_data(stocks):
             stock_prices[stock] = None
 
     return stock_prices
+
+
+def date_range_time(date_str):
+    """Возвращает диапазон от первого числа месяца до указанной даты."""
+    end_date = pd.to_datetime(date_str, dayfirst=True)
+    start_date = end_date.replace(day=1)
+    return start_date, end_date

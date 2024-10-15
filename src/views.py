@@ -4,8 +4,9 @@ import os
 
 import pandas as pd
 from dotenv import load_dotenv
+from pandas import date_range
 
-from src.utils import load_transactions_from_excel, greeting, get_currency_data, get_stock_data
+from src.utils import load_transactions_from_excel, greeting, get_currency_data, get_stock_data, date_range_time
 
 PATH_HOME = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,26 +21,21 @@ API_KEY_STOCK = os.getenv("API_KEY_STOCK")
 API_KEY_CURRENCY = os.getenv("API_KEY_CURRENCY")
 
 
-def generate_json_response(date_time_str=None):
+def generate_json_response(date_time_str):
+    """Генерация JSON-ответа на основе переданной даты."""
+    start_date, end_date = date_range_time(date_time_str)
     transactions_df = load_transactions_from_excel('operation.xlsx')
     transactions_df['Дата операции'] = pd.to_datetime(transactions_df['Дата операции'], format='%d.%m.%Y %H:%M:%S',
                                                       errors='coerce')
-    if date_time_str:
-        try:
-            date_time = pd.to_datetime(date_time_str)
-            transactions_df = transactions_df[transactions_df['Дата операции'] >= date_time]
-        except ValueError:
-            raise ValueError("Неверный формат даты и времени. Ожидается 'YYYY-MM-DD HH:MM:SS'.")
-
-    total_expenses = transactions_df['Сумма операции'].sum()
-    cashback = transactions_df['Кэшбэк'].sum()
-    last_four_digits = transactions_df['Номер карты'].iloc[0][-4:] if not transactions_df.empty else "0000"
-
-    top_transactions = transactions_df.nlargest(5, 'Сумма операции')[['Дата операции', 'Сумма операции', 'Описание']]
+    filtered_transactions = transactions_df[
+        (transactions_df['Дата операции'] >= start_date) & (transactions_df['Дата операции'] <= end_date)]
+    total_expenses = filtered_transactions['Сумма операции'].sum()
+    cashback = filtered_transactions['Кэшбэк'].sum()
+    last_four_digits = filtered_transactions['Номер карты'].iloc[0][-4:] if not filtered_transactions.empty else "0000"
+    top_transactions = filtered_transactions.nlargest(5, 'Сумма операции')[
+        ['Дата операции', 'Сумма операции', 'Описание']]
     top_transactions['Дата операции'] = top_transactions['Дата операции'].dt.strftime('%Y-%m-%d %H:%M:%S')
-
     top_transactions = top_transactions.to_dict(orient='records')
-
     response = {
         "greeting": greeting(),
         "transactions_summary": {
@@ -51,7 +47,6 @@ def generate_json_response(date_time_str=None):
         "currency_rates": get_currency_data([]),
         "stock_prices": get_stock_data([])
     }
-
     return json.dumps(response, ensure_ascii=False, indent=4)
 
 # # Пример использования функции
